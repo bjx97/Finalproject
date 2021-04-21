@@ -2,7 +2,7 @@
 <div class="main">
   <div class="menu">
     <p><a @click="toggleUpload"></a></p>
-    <h2><strong>Logged in as: </strong><i>{{user.firstName}} {{user.lastName}}</i>  <button @click="logout"><i>Logout</i></button></h2>
+    <h2><strong>Logged in as: </strong><i>{{user.firstName}} {{user.lastName}}</i>  <button @click="logout">Logout</button></h2>
   </div>
   <div>
     <Add/>
@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       show: false,
-      photos: [],
       error: '',
     }
   },
@@ -41,14 +40,6 @@ export default {
         this.$root.$data.user = null;
       }
     },
-    async getPhotos() {
-      try {
-        this.response = await axios.get("/api/photos");
-        this.photos = this.response.data;
-      } catch (error) {
-        this.error = error.response.data.message;
-      }
-    },
     close() {
       this.show = false;
     },
@@ -59,9 +50,6 @@ export default {
       this.show = false;
       this.getPhotos();
     },
-  },
-  created() {
-    this.getPhotos();
   }
 }
 </script>
@@ -74,5 +62,17 @@ export default {
 
 .menu h2 {
   font-size: 14px;
+}
+
+.button{
+  padding:5px;
+  font-size: 13px;
+  transition-duration: 0.4s;
+  width: 100px;
+}
+
+.button:hover {
+  background-color: #227eb4;
+  color: white;
 }
 </style>

@@ -7,13 +7,14 @@
         <br/>
         <div class="addedWrapper">
             <div class="form-wrapper">
-                <form v-on:submit.prevent="editJob()">
+                <form v-on:submit="editJob()">
                     <input v-model="ePosition" placeholder="Position"><br/><br/>
                     <input v-model="eDate" placeholder="Posted Date"><br/><br/>
                     <input v-model="eOpening" placeholder="Openings"><br/><br/>
                     <input v-model="eStart" placeholder="Start Date"><br/><br/>
                     <input v-model="eShift" placeholder="Shift"><br/><br/>
                     <input v-model="eWage" placeholder="Hourly Wage"><br/><br/>
+                    <input v-model="eCompany" placeholder="Company Name"><br/><br/>
                     <textarea rows="4" cols="50"  v-model="eDescription" placeholder="Description"></textarea><br/><br/>
                     <button type="submit">Update Post</button>
                 </form>
@@ -35,7 +36,8 @@ export default {
         eStart: "",
         eShift: "",
         eWage: "",
-        eDescription: ""
+        eDescription: "",
+        eCompany: ""
     }
   },
   methods: {
@@ -50,6 +52,7 @@ export default {
         this.eShift = this.updatejob.shift;
         this.eWage = this.updatejob.wage;
         this.eDescription = this.updatejob.description;
+        this.eCompany = this.updatejob.company;
         return true;
       } catch (error) {
         console.log(error);
@@ -64,7 +67,8 @@ export default {
           startdate: this.eStart,
           shift: this.eShift,
           wage:  this.eWage,
-          description: this.eDescription
+          description: this.eDescription,
+          company: this.eCompany
         });
         return true;
       } catch (error) {

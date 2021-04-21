@@ -1,20 +1,26 @@
 <template>
 <div class="hero">
   <div class="heroBox">
-    <form>
+    <form class="regis-form">
         <h2>Register for an account</h2>
-        <input placeholder="first name" v-model="firstName">
-        <input placeholder="last name" v-model="lastName">
-        <input placeholder="username" v-model="username">
-        <input type="password" placeholder="password" v-model="password">
-        <button type="submit" class="pure-button pure-button-primary" @click.prevent="register">Register</button>
+        <br/>
+        <input placeholder="Enter first name" v-model="firstName">
+        <input placeholder="Enter last name" v-model="lastName">
+        <input placeholder="Choose username" v-model="username">
+        <input type="password" placeholder="Choose password" v-model="password"><br/>
+        <div class="center">
+          <button type="submit" class="button" @click.prevent="register">Register</button>
+        </div>
     </form>
+    <p style="margin: 70px"><strong>OR</strong></p>
     <p v-if="error" class="error">{{error}}</p>
     <form class="login-form">
-        <h2>Login</h2>
+        <h2>Login</h2><br/>
         <input placeholder="username" v-model="usernameLogin">
-        <input type="password" placeholder="password" v-model="passwordLogin">
-        <button type="submit" class="pure-button pure-button-primary" @click.prevent="login">Login</button>
+        <input type="password" placeholder="password" v-model="passwordLogin"><br/>
+        <div class="center">
+          <button type="submit" class="button" @click.prevent="login">Login</button>
+        </div>
     </form>
     <p v-if="errorLogin" class="error">{{errorLogin}}</p>
   </div>
@@ -77,9 +83,6 @@ export default {
 </script>
 
 <style scoped>
-.login-form {
-  margin-top: 50px;
-}
 
 h1 {
   font-size: 28px;
@@ -87,13 +90,25 @@ h1 {
 }
 
 .hero {
-  padding: 120px;
+  padding: 10px;
   display: flex;
   justify-content: center;
 }
 
 .heroBox {
   text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.regis-form{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
 }
 
 .hero form {
@@ -116,5 +131,21 @@ input {
   font-size: 10px;
   background-color: #d9534f;
   color: #fff;
+}
+
+.button{
+  padding:5px;
+  font-size: 13px;
+  transition-duration: 0.4s;
+  width: 100px;
+}
+
+.button:hover {
+  background-color: #227eb4;
+  color: white;
+}
+
+.center {
+  align-items: center;
 }
 </style>

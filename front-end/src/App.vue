@@ -21,7 +21,8 @@
     </div>
     <router-view />
     <div class="footer">
-      <a href="https://github.com/bjx97/Creative-4-project" target="_blank">GitHub Repository</a>
+      <a href="https://github.com/bjx97/Finalproject" target="_blank">GitHub Repository</a>
+      <p>Hours Spent: 6 hours</p>
     </div>
   </div>
 </template>

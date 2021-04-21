@@ -13,11 +13,12 @@ const jobSchema = new mongoose.Schema({
     },
     position: String, 
     posteddate: String,
-    openings: Number,
+    openings: String,
     startdate: String, 
     shift: String,
-    wage: Number, 
+    wage: String, 
     description: String,
+    company: String,
     created: {
         type: Date,
         default: Date.now
@@ -38,10 +39,10 @@ const Job = mongoose.model('Job', jobSchema);
 //get all comments
 router.get('/all', async (req, res) => {
     try {
-      let jobs = await Job.find({
-        user: req.user
-      });
-      res.send({jobs: jobs});
+      let jobs = await Job.find().sort({
+        created: -1
+      }).populate('user');
+      return res.send({jobs: jobs});
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
@@ -62,19 +63,19 @@ router.get('/all', async (req, res) => {
 });*/
 
 //get my comments
-/*router.get('/:id', validUser, async (req, res) => {
+router.get('/:id', validUser, async (req, res) => {
     try {
       let foundJob = await Job.findOne({
         _id: req.params.id
       }).sort({
         created: -1
-      }).populate('user);
+      }).populate('user');
       return res.send(foundJob);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
     }
-});*/
+});
   
 router.post('/', validUser, async (req, res) => {
     const job = new Job({
@@ -85,7 +86,8 @@ router.post('/', validUser, async (req, res) => {
     startdate: req.body.startdate,
     shift: req.body.shift,
     wage: req.body.wage,
-    description: req.body.description
+    description: req.body.description,
+    company: req.body.company
   });
   try {
     await job.save();
@@ -120,6 +122,7 @@ router.put('/:id', validUser, async (req, res) => {
       foundJob.shift = req.body.shift;
       foundJob.wage = req.body.wage;
       foundJob.description = req.body.description;
+      foundJob.company = req.body.company
       await foundJob.save();
       res.send(foundJob);
     } catch (error) {

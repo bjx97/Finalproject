@@ -12,7 +12,7 @@
                 <p><strong>Shifts: </strong>{{job.shift}}</p><br/>
                 <p><strong>Hourly Pay: </strong>${{job.wage}}</p><br/>
                 <p><strong>Job Description: </strong>{{job.description}}</p><br/>
-                <p><strong>Posted By: </strong>{{job.firstName}}</p><br/>
+                <p><strong>Posting Company: </strong>{{job.company}}</p><br/>
                 <div class="buttons">
                   <button v-if="user" @click="deleteJob(job)">Delete</button>
                   <div v-if="user" class="link-button">
@@ -74,7 +74,6 @@ export default {
   },
   created() {
     this.getJobs();
-
   },
   methods: {
     async getJobs() {
@@ -114,8 +113,8 @@ export default {
             jobEmail: this.hEmail
         });
         this.hComment = "";
-        //this.hName = "";
-        //this.hDate = "";
+        this.hName = "";
+        this.hDate = "";
         this.hEmail = "";
         return true;
       } catch (error) {
@@ -143,7 +142,6 @@ export default {
         console.log(error);
       }
     }
-
    /*setcurrentjob(job) {
      @click.native="setcurrentjob(job);
        this.$root.$data.currentjob = job;
@@ -158,14 +156,12 @@ export default {
 </script>
 
 <style scoped>
-
 .header1 {
   display: flex;
   justify-content: center;
   color:#1270bd;
   margin-bottom: 40px;
 }
-
 .job {
   display: flex;
   flex-wrap: wrap;
@@ -173,37 +169,31 @@ export default {
   text-align: start;
   justify-content: space-around;
 }
-
 .job-descrip {
   padding-top: 10px;
   padding-bottom: 10px;
   flex-wrap: wrap;
 }
-
 .form-wrap {
   padding-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-
 .buttons {
   display: flex;
-  justify-content:space-between;
-  margin-top: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
-
 .des-wrap {
   display: flex;
   flex-wrap: wrap;
 }
-
 .if-com {
   display: flex;
   flex-direction: column;
   margin-top: 110px;
 }
-
 .link-button {
   background-color: #e7e7e7; 
   color: black;
@@ -213,6 +203,6 @@ export default {
   display: inline-block;
   padding:5px;
   font-size: 13px;
+  margin-left: 20px;
 }
-
 </style>

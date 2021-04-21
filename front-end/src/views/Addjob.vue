@@ -12,6 +12,7 @@
                     <input v-model="aStart" placeholder="Start Date"><br/><br/>
                     <input v-model="aShift" placeholder="Shift"><br/><br/>
                     <input v-model="aWage" placeholder="Hourly Wage"><br/><br/>
+                    <input v-model="aCompany" placeholder="Company Name"><br/><br/>
                     <textarea rows="4" cols="50"  v-model="description" placeholder="Description"></textarea><br/><br/>
                     <button type="submit">Post Job</button>
                 </form>
@@ -32,7 +33,8 @@ export default {
         aStart: '',
         aShift: '',
         aWage: '',
-        description: ''
+        description: '',
+        aCompany: ''
     }
   },
   methods: {
@@ -45,7 +47,8 @@ export default {
             startdate: this.aStart,
             shift: this.aShift,
             wage: this.aWage,
-            description: this.description
+            description: this.description,
+            company: this.aCompany
         });
         this.aPosition = "";
         this.aDate = "";
@@ -54,6 +57,7 @@ export default {
         this.aShift = "";
         this.aWage = "";
         this.description = "";
+        this.aCompany = "";
         return true;
       } catch (error) {
         console.log(error);
@@ -65,14 +69,11 @@ export default {
 
 
 <style scoped>
-
 .header1 {
   margin-bottom: 60px;
 }
-
 .form-wrapper {
   display: flex;
   flex-direction: column;
 }
-
 </style>
